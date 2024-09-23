@@ -2,6 +2,8 @@ import styled from "styled-components"
 import { Colors } from "../style/colors"
 import LoudLoudBoy from "../components/main/LoudLoudBoy"
 import List from "../components/main/List"
+import { IoAdd } from "react-icons/io5"
+import { IoMdExit } from "react-icons/io"
 
 function MainPage() {
     return (
@@ -9,7 +11,13 @@ function MainPage() {
             <Background>
                 <LeftBar>
                     <ProfileContainer>
-                        <Profile />
+                        <ProfileWrapper>
+                            <Profile />
+
+                            <LogOut>
+                                <IoMdExit />
+                            </LogOut>
+                        </ProfileWrapper>
                         <GroupName>대덕소프트웨어마이스터고등학교</GroupName>
                         <Explain>남은 일정 개수 : 8</Explain>
                         <Explain>연결된 기기 수 : 4</Explain>
@@ -22,6 +30,9 @@ function MainPage() {
                             <LoudLoudBoy name="Hamster2" />
                             <LoudLoudBoy name="Hamster3" />
                             <LoudLoudBoy name="Gangster1" />
+                            <AddLoudBoy>
+                                <IoAdd />
+                            </AddLoudBoy>
                         </ConnectWrapper>
                     </ConnectContainer>
                 </LeftBar>
@@ -168,4 +179,47 @@ const ListContainer = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 10px;
+`
+
+const AddLoudBoy = styled.div`
+    width: 100%;
+    height: 40px;
+    background: ${Colors.Gray200};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: ${Colors.Gray500};
+    transition: 300ms;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background: ${Colors.Gray300};
+    }
+`
+
+const ProfileWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+`
+
+const LogOut = styled.p`
+    width: 34px;
+    height: 34px;
+    margin-left: auto;
+    font-size: 30px;
+    color: ${Colors.Gray400};
+    cursor: pointer;
+    transition: 200ms;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background: ${Colors.Gray200};
+    }
 `
