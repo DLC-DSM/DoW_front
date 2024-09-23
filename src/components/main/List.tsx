@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { Colors } from "../../style/colors"
-import { IoIosArrowDown } from "react-icons/io"
-import { IoIosArrowUp } from "react-icons/io"
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 import { useState } from "react"
+import { MdEdit, MdDelete } from "react-icons/md"
 
 interface Props {
     name?: string
@@ -33,7 +33,19 @@ function List({ name, date, explain }: Props) {
                         </Button>
                     </RightContainer>
                 </Container>
-                {show && <ExplainContaienr>{explain}</ExplainContaienr>}
+                {show && (
+                    <ExplainContaienr>
+                        <Explain>{explain}</Explain>
+                        <ButtonContainer>
+                            <EditIconButton>
+                                <MdEdit />
+                            </EditIconButton>
+                            <DeleteIconButton>
+                                <MdDelete />
+                            </DeleteIconButton>
+                        </ButtonContainer>
+                    </ExplainContaienr>
+                )}
             </AllContainer>
         </>
     )
@@ -105,6 +117,44 @@ const ExplainContaienr = styled.div`
     padding: 20px;
     background-color: ${Colors.Gray100};
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const Explain = styled.p`
+    width: 90%;
     font-size: 16px;
     color: ${Colors.Gray500};
+`
+
+const ButtonContainer = styled.div`
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+`
+
+const EditIconButton = styled.p`
+    font-size: 20px;
+    color: ${Colors.Gray300};
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+        color: ${Colors.Green};
+    }
+`
+
+const DeleteIconButton = styled.p`
+    font-size: 20px;
+    color: ${Colors.Gray300};
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+        color: ${Colors.CriticalMain};
+    }
 `
