@@ -8,9 +8,11 @@ interface Props {
     name?: string
     date: string
     explain?: string
+    onClickEdit?: () => void
+    onClickDel?: () => void
 }
 
-function List({ name, date, explain }: Props) {
+function List({ name, date, explain, onClickEdit, onClickDel }: Props) {
     const [show, setShow] = useState<Boolean>(false)
 
     let date1 =
@@ -37,10 +39,10 @@ function List({ name, date, explain }: Props) {
                     <ExplainContaienr>
                         <Explain>{explain}</Explain>
                         <ButtonContainer>
-                            <EditIconButton>
+                            <EditIconButton onClick={onClickEdit}>
                                 <MdEdit />
                             </EditIconButton>
-                            <DeleteIconButton>
+                            <DeleteIconButton onClick={onClickDel}>
                                 <MdDelete />
                             </DeleteIconButton>
                         </ButtonContainer>
@@ -71,7 +73,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 1;
 `
 
 const ListTitle = styled.p`
