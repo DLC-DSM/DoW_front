@@ -14,6 +14,7 @@ export const Colors = {
     GrayHover: "#aaaaaa80",
     CriticalMain: "#db2c36",
     CriticalBackground: "#ffe6d8",
+    ModalBackground: "#00000060",
     Blue: "#1263FF",
     Green: "#33db04",
 } as const

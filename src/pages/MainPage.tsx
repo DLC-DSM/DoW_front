@@ -4,17 +4,93 @@ import LoudLoudBoy from "../components/main/LoudLoudBoy"
 import List from "../components/main/List"
 import { IoAdd } from "react-icons/io5"
 import { IoMdExit } from "react-icons/io"
+import CheckModal from "../components/main/CheckModal"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { TiPlus } from "react-icons/ti"
 
 function MainPage() {
+    const navigate = useNavigate()
+    const [delModalShow, setDelModalShow] = useState<Boolean>(false)
+    const [logoutModal, setLogoutModal] = useState<Boolean>(false)
+    const [editModal, setEditModal] = useState<Boolean>(false)
+    const [addListModal, setAddListModal] = useState<Boolean>(false)
+    const [addLoudBoy, setAddLoudBoy] = useState<Boolean>(false)
+
+    const delModalToggleHandler = () => {
+        setDelModalShow(!delModalShow)
+    }
+
+    const logoutModalToggleHandler = () => {
+        setLogoutModal(!logoutModal)
+    }
+
+    const logoutHandler = () => {
+        setDelModalShow(!logoutModal)
+        navigate("/")
+    }
+
+    const editModalToggleHandler = () => {
+        setEditModal(!editModal)
+    }
+
+    const addListModalToggleHandler = () => {
+        setAddListModal(!addListModal)
+    }
+
+    const addLoudboyToggleHandler = () => {
+        setAddLoudBoy(!addLoudBoy)
+    }
+
     return (
         <>
+            {delModalShow && (
+                <CheckModal
+                    title="삭제하시겠습니까?"
+                    subtitle="삭제하시면 다시 복구할 수 없습니다."
+                    check={delModalToggleHandler}
+                    close={delModalToggleHandler}
+                />
+            )}
+            {logoutModal && (
+                <CheckModal
+                    title="로그아웃하시겠습니까?"
+                    check={logoutHandler}
+                    close={logoutModalToggleHandler}
+                />
+            )}
+            {editModal && (
+                <CheckModal
+                    type="input"
+                    check={editModalToggleHandler}
+                    close={editModalToggleHandler}
+                    button="수정"
+                />
+            )}
+            {addListModal && (
+                <CheckModal
+                    type="input"
+                    check={addListModalToggleHandler}
+                    close={addListModalToggleHandler}
+                    button="추가"
+                />
+            )}
+            {addLoudBoy && (
+                <CheckModal
+                    type="connect"
+                    check={addLoudboyToggleHandler}
+                    close={addLoudboyToggleHandler}
+                    button="확인"
+                />
+            )}
+
             <Background>
                 <LeftBar>
                     <ProfileContainer>
                         <ProfileWrapper>
                             <Profile />
 
-                            <LogOut>
+                            <LogOut onClick={logoutModalToggleHandler}>
                                 <IoMdExit />
                             </LogOut>
                         </ProfileWrapper>
@@ -26,11 +102,23 @@ function MainPage() {
                     <ConnectContainer>
                         <ConnectTitle>연결된 기기</ConnectTitle>
                         <ConnectWrapper>
-                            <LoudLoudBoy name="Hamster1" />
-                            <LoudLoudBoy name="Hamster2" />
-                            <LoudLoudBoy name="Hamster3" />
-                            <LoudLoudBoy name="Gangster1" />
-                            <AddLoudBoy>
+                            <LoudLoudBoy
+                                name="Hamster1"
+                                onClickDel={delModalToggleHandler}
+                            />
+                            <LoudLoudBoy
+                                name="Hamster2"
+                                onClickDel={delModalToggleHandler}
+                            />
+                            <LoudLoudBoy
+                                name="Hamster3"
+                                onClickDel={delModalToggleHandler}
+                            />
+                            <LoudLoudBoy
+                                name="Gangster1"
+                                onClickDel={delModalToggleHandler}
+                            />
+                            <AddLoudBoy onClick={addLoudboyToggleHandler}>
                                 <IoAdd />
                             </AddLoudBoy>
                         </ConnectWrapper>
@@ -38,27 +126,40 @@ function MainPage() {
                 </LeftBar>
 
                 <Container>
-                    <ListTitle>일정 목록</ListTitle>
+                    <ListTitle>
+                        일정 목록
+                        <AddList onClick={addListModalToggleHandler}>
+                            <TiPlus />
+                        </AddList>
+                    </ListTitle>
                     <ListContainer>
                         <List
                             name="마감하기"
                             date="2024-09-23T15:39:22"
                             explain="마감을 할 지어다"
+                            onClickEdit={editModalToggleHandler}
+                            onClickDel={delModalToggleHandler}
                         />
                         <List
                             name="마감하기"
                             date="2024-09-23T15:39:22"
                             explain="마감을 할 지어다"
+                            onClickEdit={editModalToggleHandler}
+                            onClickDel={delModalToggleHandler}
                         />
                         <List
                             name="마감하기"
                             date="2024-09-23T15:39:22"
                             explain="마감을 할 지어다"
+                            onClickEdit={editModalToggleHandler}
+                            onClickDel={delModalToggleHandler}
                         />
                         <List
                             name="마감하기"
                             date="2024-09-23T15:39:22"
                             explain="마감을 할 지어다"
+                            onClickEdit={editModalToggleHandler}
+                            onClickDel={delModalToggleHandler}
                         />
                     </ListContainer>
                 </Container>
@@ -170,6 +271,13 @@ const ListTitle = styled.div`
     padding: 10px 5px;
     color: ${Colors.Gray500};
     border-bottom: 1px solid ${Colors.Gray300};
+`
+
+const AddList = styled.p`
+    margin-left: auto;
+    font-size: 24px;
+    color: ${Colors.Gray500};
+    cursor: pointer;
 `
 
 const ListContainer = styled.div`
