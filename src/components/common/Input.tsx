@@ -8,9 +8,10 @@ interface Props {
     type?: string
     label?: string
     placeholder?: string
+    max?: number
 }
 
-function Input({ type = "text", label, placeholder }: Props) {
+function Input({ type = "text", label, placeholder, max }: Props) {
     const [show, setShow] = useState<Boolean>(false)
 
     const toggleShowHandler = () => {
@@ -31,6 +32,7 @@ function Input({ type = "text", label, placeholder }: Props) {
                                 : type
                         }
                         placeholder={placeholder}
+                        maxLength={max}
                     />
 
                     {type == "password" &&

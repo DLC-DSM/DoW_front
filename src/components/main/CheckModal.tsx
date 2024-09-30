@@ -45,6 +45,7 @@ function CheckModal({
                                 <Input
                                     label="제목"
                                     placeholder="제목을 입력해주세요"
+                                    max={16}
                                 />
                                 <Input
                                     label="날짜"
