@@ -17,6 +17,59 @@ function MainPage() {
     const [addListModal, setAddListModal] = useState<Boolean>(false)
     const [addLoudBoy, setAddLoudBoy] = useState<Boolean>(false)
 
+    const Lists = [
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+        {
+            time: "2024/09/20/15/00",
+            title: "마감하기",
+            content: "마감 하라고 샹123ㅕㄹㄴ아 !!@!@!@",
+        },
+    ]
+
     const delModalToggleHandler = () => {
         setDelModalShow(!delModalShow)
     }
@@ -133,34 +186,17 @@ function MainPage() {
                         </AddList>
                     </ListTitle>
                     <ListContainer>
-                        <List
-                            name="마감하기"
-                            date="2024-09-23T15:39:22"
-                            explain="마감을 할 지어다"
-                            onClickEdit={editModalToggleHandler}
-                            onClickDel={delModalToggleHandler}
-                        />
-                        <List
-                            name="마감하기"
-                            date="2024-09-23T15:39:22"
-                            explain="마감을 할 지어다"
-                            onClickEdit={editModalToggleHandler}
-                            onClickDel={delModalToggleHandler}
-                        />
-                        <List
-                            name="마감하기"
-                            date="2024-09-23T15:39:22"
-                            explain="마감을 할 지어다"
-                            onClickEdit={editModalToggleHandler}
-                            onClickDel={delModalToggleHandler}
-                        />
-                        <List
-                            name="마감하기"
-                            date="2024-09-23T15:39:22"
-                            explain="마감을 할 지어다"
-                            onClickEdit={editModalToggleHandler}
-                            onClickDel={delModalToggleHandler}
-                        />
+                        {Lists.map((v) => {
+                            return (
+                                <List
+                                    name={v.title}
+                                    date={v.time}
+                                    explain={v.content}
+                                    onClickEdit={editModalToggleHandler}
+                                    onClickDel={delModalToggleHandler}
+                                />
+                            )
+                        })}
                     </ListContainer>
                 </Container>
             </Background>
@@ -180,7 +216,7 @@ const Background = styled.div`
 `
 
 const LeftBar = styled.div`
-    width: 20%;
+    width: 320px;
     height: 100vh;
     background: ${Colors.Gray100};
     border-radius: 0 10px 10px 0;
@@ -250,8 +286,9 @@ const ConnectWrapper = styled.div`
 `
 
 const Container = styled.div`
-    margin-left: auto;
-    width: 80%;
+    position: absolute;
+    left: 310px;
+    width: 1200px;
     height: 100vh;
     display: flex;
     justify-content: start;
