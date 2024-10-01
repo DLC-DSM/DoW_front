@@ -45,11 +45,11 @@ function CheckModal({
                                 <Input
                                     label="제목"
                                     placeholder="제목을 입력해주세요"
-                                    max={16}
+                                    max={24}
                                 />
                                 <Input
-                                    label="날짜"
-                                    placeholder="날짜를 입력해주세요(XXXX.XX.XX)"
+                                    label="일정"
+                                    placeholder="날짜와 시간을 입력해주세요(XXXX/XX/XX XX:XX)"
                                 />
                                 <Input
                                     label="내용"
